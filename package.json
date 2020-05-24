@@ -10,8 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/JannickWeichert/Poolsteuerung.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Jannick Weichert",
   "bugs": {
     "url": "https://github.com/JannickWeichert/Poolsteuerung/issues"
   },
