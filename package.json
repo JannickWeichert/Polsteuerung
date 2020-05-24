@@ -1,0 +1,24 @@
+{
+  "name": "poolsteuerung",
+  "version": "1.0.0",
+  "description": "",
+  "main": "poolscript.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JannickWeichert/Poolsteuerung.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JannickWeichert/Poolsteuerung/issues"
+  },
+  "homepage": "https://github.com/JannickWeichert/Poolsteuerung#readme",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "net-snmp": "2.6.4",
+    "owfs": "0.4.0"
+  }
+}

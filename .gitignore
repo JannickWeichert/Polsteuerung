@@ -1,0 +1,9 @@
+lib/
+dist/
+node_modules/
+coverage/
+docs/
+.idea/
+.vscode/
+*.log
+*.iml
