@@ -17,7 +17,7 @@ var EntladerateIdle = 200;
 var CheckFlowDelay = 5000;
 var MaxTemperatur = 28;
 var Mindestlaufzeit = 30;
-var WiederholungsrateMs = 60 * 1000;
+var WiederholungsrateMs = 10 * 1000;
 
 // Konstanten
 var OWFS_MESSWERTE = [
