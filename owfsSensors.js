@@ -12,15 +12,23 @@ var handleOwfsDataReceived = (error, result, onSuccess) => {
 	}
 };
 
-var readOwfs = (adress, onSuccess) => {
-	con.read(adress, (error, result) => handleOwfsDataReceived(error, result, onSuccess));
+var readOwfs = (address, onSuccess) => {
+	try {
+	con.read(address, (error, result) => handleOwfsDataReceived(error, result, onSuccess));
+	} catch (e) {
+		debug('OWFS Lesefehler: address' + address + ', Fehler: '  + e);
+	}
 };
 
 var writeOwfs = (address, value, cb) => {
 	if (!cb) {
-		cb = () => {
-		};
+		cb = () => { };
 	}
-	con.write(address, value, cb);
+	try {
+		con.write(address, value, cb);
+	} catch (e) {
+		debug('OWFS Schreibfehler: address' + address + ', value: ' + value + ', Fehler: '  + e);
+
+	}
 };
 module.exports = {readOwfs, writeOwfs};

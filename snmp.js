@@ -14,7 +14,11 @@ var handleSnmpDataReceived = (error, varbinds, onSuccess) => {
 };
 
 var readSnmp = (address, onSuccess) => {
-	session.get([address], (error, result) => handleSnmpDataReceived(error, result, onSuccess));
+	try {
+		session.get([address], (error, result) => handleSnmpDataReceived(error, result, onSuccess));
+	} catch (e) {
+		debug('SNMP Lesefehler: address: ' + address + ', Fehler: ' + e)
+	}
 };
 
 module.exports = {readSnmp};

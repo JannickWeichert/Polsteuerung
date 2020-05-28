@@ -95,7 +95,7 @@ var checkZeitfenster = () => {
 var setPumpDirection = () => {
 	var Dach = PoolTemperatur < MaxTemperatur && DachTemperatur >= (PoolTemperatur + Temperaturdifferenz);
 	!Dach && debug("Stelle auf Kreislauf, da die Pooltemperatur zu hoch oder die Dachtemperatur zu niedrig ist.");
-	WASSERFLUSS_CONFIG.forEach((config) => writeOwfs(config.adress, Dach ? config.dachValue : config.kreislaufValue));
+	WASSERFLUSS_CONFIG.forEach((config) => writeOwfs(config.adress, Dach ? config.dachValue : config.kreislaufValue, () => {}));
 };
 
 var shouldPumpRun = () => {
@@ -125,9 +125,9 @@ var SchaltePumpe = (Zustand) => {
 		ueberpruefeWasserfluss();
 		Laufzeit += 1;
 		setzeLaufzeit(Laufzeit);
-		writeOwfs(PUMPEN_ADRESSE, PUMPE_AN_WERT);
+		writeOwfs(PUMPEN_ADRESSE, PUMPE_AN_WERT, () => {});
 	} else {
-		writeOwfs(PUMPEN_ADRESSE, PUMPE_AUS_WERT);
+		writeOwfs(PUMPEN_ADRESSE, PUMPE_AUS_WERT, () => {});
 		clearInterval(checkFlowInterval);
 	}
 };
