@@ -61,6 +61,7 @@ var Ladestand = 0;
 var Lademodus = "laden";
 
 var checkFlowInterval;
+var notAusAktiviert = false;
 
 var readSensors = function () {
 	OWFS_MESSWERTE.forEach((config) => readOwfs(config.address, (reading) => config.onSuccess(reading)));
@@ -76,6 +77,7 @@ var ueberpruefeWasserfluss = () => {
 			if (messwert !== WASSERFLUSS_SENSOR_FLUSS) {
 				debug("Kein Wasserfluss entdeckt, NOT AUS");
 				SchaltePumpe(false);
+				notAusAktiviert = true;
 			}
 		});
 	}, CheckFlowDelay);
@@ -118,7 +120,7 @@ var ZeigeVariablen = () => {
 
 // Zustand = true -> Pumpe soll laufen
 var SchaltePumpe = (Zustand) => {
-	if (Zustand) {
+	if (Zustand && !notAusAktiviert) {
 		setPumpDirection();
 		ueberpruefeWasserfluss();
 		Laufzeit += 1;
