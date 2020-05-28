@@ -22,11 +22,13 @@ var readOwfs = (address, onSuccess) => {
 };
 
 var writeOwfs = (address, value, cb) => {
-	if (!cb) {
-		cb = () => { };
-	}
+	//if (!cb) {
+		//cb = (err, message) => console.log('writeCallback', err, message);
+	//}
+	debug('writeOwfs' + address + ', value: ' + value );
+
 	try {
-		con.write(address, value, cb);
+		con.write(address, value, (err, message) => console.log('writeCallback', err, message));
 	} catch (e) {
 		debug('OWFS Schreibfehler: address' + address + ', value: ' + value + ', Fehler: '  + e);
 
