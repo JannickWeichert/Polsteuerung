@@ -6,6 +6,7 @@ var Client = require("owfs").Client;
 var con = new Client(config.OWFS_IP, config.OWFS_PORT);
 
 var handleOwfsDataReceived = (error, result, onSuccess) => {
+	console.log('handleOwfsDataReceived', error, result, onSuccess);
 	if (!error && result && typeof onSuccess === "function") {
 		var reading = aufZweiStellenRunden(result);
 		reading && onSuccess(reading);
