@@ -18,10 +18,6 @@ var CheckFlowDelay = 5000;
 var MaxTemperatur = 28;
 var Mindestlaufzeit = 30;
 var WiederholungsrateMs = 60 * 1000;
-exports.laufzeitFilename = 'laufzeit.txt';
-var laufzeitFilename = 'laufzeit.txt';
-var SNMP_IP = "192.168.255.236";
-var SNMP_COMMUNITY = "ades.1";
 
 // Konstanten
 var OWFS_MESSWERTE = [
@@ -69,7 +65,7 @@ var checkFlowInterval;
 var readSensors = function () {
 	OWFS_MESSWERTE.forEach((config) => readOwfs(config.address, (reading) => config.onSuccess(reading)));
 	SNMP_MESSWERTE.forEach((config) => readSnmp(config.address, (reading) => config.onSuccess(reading)));
-	leseLaufzeit(laufzeitFilename, (auslesewert) => Laufzeit = auslesewert);
+	leseLaufzeit((auslesewert) => Laufzeit = auslesewert);
 };
 
 var ueberpruefeWasserfluss = () => {
@@ -126,7 +122,7 @@ var SchaltePumpe = (Zustand) => {
 		setPumpDirection();
 		ueberpruefeWasserfluss();
 		Laufzeit += 1;
-		setzeLaufzeit(laufzeitFilename, Laufzeit);
+		setzeLaufzeit(Laufzeit);
 		writeOwfs(PUMPEN_ADRESSE, PUMPE_AN_WERT);
 	} else {
 		writeOwfs(PUMPEN_ADRESSE, PUMPE_AUS_WERT);
@@ -196,7 +192,3 @@ setInterval(readSensors, 20000);
 setInterval(AktualisierePumpenStatus, WiederholungsrateMs);
 readSensors();
 setTimeout(AktualisierePumpenStatus, 2000);
-
-module.exports = {
-	laufzeitFilename, SNMP_COMMUNITY, SNMP_IP
-};

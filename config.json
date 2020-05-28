@@ -1,0 +1,7 @@
+{
+  "laufzeitFilename": "laufzeit.txt",
+  "SNMP_IP": "192.168.255.236",
+  "SNMP_COMMUNITY": "ades.1",
+  "OWFS_IP": "localhost",
+  "OWFS_PORT": 4304
+}

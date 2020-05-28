@@ -1,8 +1,9 @@
 var aufZweiStellenRunden = require('./utils').aufZweiStellenRunden;
 var debug = require('./utils').debug;
+var config = require('./config');
 
 var Client = require("owfs").Client;
-var con = new Client("localhost", 4304);
+var con = new Client(config.OWFS_IP, config.OWFS_PORT);
 
 var handleOwfsDataReceived = (error, result, onSuccess) => {
 	if (!error && result && typeof onSuccess === "function") {

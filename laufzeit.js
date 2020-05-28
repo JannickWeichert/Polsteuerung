@@ -1,12 +1,11 @@
 var fs = require('fs');
 var debug = require('./utils').debug;
 var aufZweiStellenRunden = require('./utils').aufZweiStellenRunden;
-const laufzeitFilename = require('./poolscript').laufzeitFilename;
+var config = require('./config');
 
-
-var leseLaufzeit = (path, onSuccess) => {
+var leseLaufzeit = (onSuccess) => {
 	try {
-		fs.readFile(path, (err, data) => {
+		fs.readFile(config.laufzeitFilename, (err, data) => {
 			data && onSuccess(aufZweiStellenRunden(data.toString()));
 		});
 	} catch (e) {
@@ -14,9 +13,9 @@ var leseLaufzeit = (path, onSuccess) => {
 	}
 };
 
-var setzeLaufzeit = (path, Laufzeit) => {
+var setzeLaufzeit = (laufzeit) => {
 	try {
-		fs.writeFile(path, Laufzeit.toString(), (err) => {
+		fs.writeFile(config.laufzeitFilename, laufzeit.toString(), (err) => {
 			if (err) {
 				throw err;
 			}
